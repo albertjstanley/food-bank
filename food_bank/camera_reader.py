@@ -5,6 +5,7 @@ import PIL
 from PIL import Image
 from pathlib import Path
 from datetime import datetime
+import time
 
 GENERATED_IMAGES_DIR = Path("generated_images")
 
@@ -18,12 +19,14 @@ class CameraReader:
     def _save_image(self, numpy_array):
         im = Image.fromarray(numpy_array,mode="RGB")
         identifier = self._get_unique_identifier()
-        im.save(str(GENERATED_IMAGES_DIR  / f"{identifier}.jpeg"), "JPEG")
+        image_path = str(GENERATED_IMAGES_DIR  / f"{identifier}.jpeg")
+        im.save(image_path, "JPEG")
+        return image_path
     
     def _take_photo(self):
         cam_port = 0
         cam = VideoCapture(cam_port)
-        input("waiting")
+        time.sleep(1)
         # reading the input using the camera
         result, image = cam.read()
         rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -38,8 +41,8 @@ class CameraReader:
         # current device, assign a value in cam_port 
         # variable according to that
         image = self._take_photo()
-        self._save_image(image)
-        input()
+        image_path = self._save_image(image)
+        return image_path
         
         # If image will detected without any error, 
         # show result

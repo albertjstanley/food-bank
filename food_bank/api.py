@@ -14,6 +14,12 @@ class GoogleVisionResponse:
 class GoogleVisionAPI:
     def __init__(self):
         pass
+
+    def predict_on_image_path(self,image_path):
+        # Loads the image into memory
+        with io.open(image_path, 'rb') as image_file:
+            content = image_file.read()
+        return self.predict_on_image_bytes(content)
     
     def predict_on_image_bytes(self,bytes):
         self.client = vision.ImageAnnotatorClient()
