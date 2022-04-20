@@ -43,23 +43,3 @@ class CameraReader:
         image = self._take_photo()
         image_path = self._save_image(image)
         return image_path
-        
-        # If image will detected without any error, 
-        # show result
-        # if result:
-        
-        #     # showing result, it take frame name and image 
-        #     # output
-        #     imshow("GeeksForGeeks", image)
-        
-        #     # saving image in local storage
-        #     imwrite("GeeksForGeeks.png", image)
-        
-        #     # If keyboard interrupt occurs, destroy image 
-        #     # window
-        #     waitKey(0)
-        #     destroyWindow("GeeksForGeeks")
-        
-        # # If captured image is corrupted, moving to else part
-        # else:
-        #     print("No image detected. Please! try again")
